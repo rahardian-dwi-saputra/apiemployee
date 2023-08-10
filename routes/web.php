@@ -16,3 +16,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/employees','EmployeeController@index');
+$router->get('/jobs','EmployeeController@get_jobs');
