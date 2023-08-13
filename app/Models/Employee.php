@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Employee extends Model{
     use HasFactory;
     
+    protected $primaryKey = 'employee_id';
+    protected $keyType = 'string';
     protected $guarded = [];
     public $timestamps = false;
 

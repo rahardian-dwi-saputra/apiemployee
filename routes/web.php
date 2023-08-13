@@ -19,3 +19,7 @@ $router->get('/', function () use ($router) {
 
 $router->get('/employees','EmployeeController@index');
 $router->get('/jobs','EmployeeController@get_jobs');
+$router->post('/employees', 'EmployeeController@store');
+$router->get('/employees/{id}', 'EmployeeController@show');
+$router->patch('/employees/{id}', 'EmployeeController@update');
+$router->delete('/employees/{id}', 'EmployeeController@destroy');

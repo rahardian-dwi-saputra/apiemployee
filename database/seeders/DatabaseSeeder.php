@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // 	DepartmentSeeder::class,
         //     JobSeeder::class
         // ]);
-        Employee::factory(3)->make();
+        //Employee::factory(3)->make();
 
         
     }
