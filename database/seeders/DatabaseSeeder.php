@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         // 	DepartmentSeeder::class,
         //     JobSeeder::class
         // ]);
-        Employee::factory()->create();
+        for($i=0; $i<10; $i++)
+            Employee::factory()->create();
     }
 }

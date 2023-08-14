@@ -80,6 +80,10 @@ $app->configure('app');
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+$app->routeMiddleware([
+	'BasicAuth' => 'App\Http\Middleware\BasicAuthMiddleware',
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers

@@ -17,9 +17,11 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/employees','EmployeeController@index');
-$router->get('/jobs','EmployeeController@get_jobs');
-$router->post('/employees', 'EmployeeController@store');
-$router->get('/employees/{id}', 'EmployeeController@show');
-$router->patch('/employees/{id}', 'EmployeeController@update');
-$router->delete('/employees/{id}', 'EmployeeController@destroy');
+$router->group(['middleware' => 'BasicAuth'], function () use ($router){
+	$router->get('/employees','EmployeeController@index');
+	$router->get('/jobs','EmployeeController@get_jobs');
+	$router->post('/employees', 'EmployeeController@store');
+	$router->get('/employees/{id}', 'EmployeeController@show');
+	$router->patch('/employees/{id}', 'EmployeeController@update');
+	$router->delete('/employees/{id}', 'EmployeeController@destroy');
+});
