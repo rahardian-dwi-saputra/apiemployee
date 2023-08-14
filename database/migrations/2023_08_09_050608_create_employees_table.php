@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('full_name');
             $table->unsignedBigInteger('job_id');
             $table->date('hire_date');
-            $table->string('gender', 1);
+            $table->enum('gender', ['L', 'P']);
             $table->date('date_of_birth');
             $table->string('email')->nullable();
             $table->string('phone', 20);
             $table->text('address')->nullable();
-            $table->decimal('salary',8,2)->nullable();
+            $table->decimal('salary',10,0)->nullable();
             
             $table->primary('employee_id');
             $table->foreign('job_id')->references('id')->on('jobs');

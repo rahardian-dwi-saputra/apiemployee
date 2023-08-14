@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Job;
+use Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
@@ -23,12 +24,21 @@ class EmployeeController extends Controller
         if($count == 0){
             return response()->json([
                 'success' => false,
-                'message' => 'Data kosong' 
+                'message' => 'Data Employee kosong' 
             ], 404);   
         }else{
+            $employees = Employee::paginate(5);
             return response()->json([
                 'success' => true,
-                'data' => Employee::all() 
+                'data' => $employees->items(),
+                'pagination' => [
+                    'total' => $employees->total(),
+                    'per_page' => $employees->perPage(),
+                    'current_page' => $employees->currentPage(),
+                    'last_page' => $employees->lastPage(),
+                    'from' => $employees->firstItem(),
+                    'to' => $employees->lastItem()
+                ]
             ], 200);
         }
     }
@@ -37,7 +47,7 @@ class EmployeeController extends Controller
         if($jobs->count() == 0){
             return response()->json([
                 'success' => false,
-                'message' => 'Data kosong' 
+                'message' => 'Data Job kosong' 
             ], 404);
         }
         return response()->json([
@@ -47,15 +57,15 @@ class EmployeeController extends Controller
     }
     public function store(Request $request){
         $this->validate($request, [
-            'full_name' => 'required',
-            'job' => 'required',
-            'hire_date' => 'required',
-            'gender' => 'required',
-            'date_of_birth' => 'required',
-            'email' => 'nullable',
-            'phone' => 'required',
+            'full_name' => 'required|string',
+            'job' => 'required|exists:jobs,id',
+            'hire_date' => 'required|date_format:d-m-Y',
+            'gender' => 'required|in:L,P',
+            'date_of_birth' => 'required|date_format:d-m-Y',
+            'email' => 'nullable|email:dns|unique:employees,email',
+            'phone' => 'required|max:20',
             'address' => 'nullable',
-            'salary' => 'nullable'
+            'salary' => 'nullable|numeric'
         ]);
 
         $n_data = Employee::count();
@@ -74,9 +84,9 @@ class EmployeeController extends Controller
         $employee->employee_id = $request->employee_id;
         $employee->full_name = $request->input('full_name');
         $employee->job_id = $request->input('job');
-        $employee->hire_date = $request->input('hire_date');
+        $employee->hire_date = Carbon::createFromFormat('d-m-Y', $request->input('hire_date'))->format('Y-m-d');
         $employee->gender = $request->input('gender');
-        $employee->date_of_birth = $request->input('date_of_birth');
+        $employee->date_of_birth = Carbon::createFromFormat('d-m-Y', $request->input('date_of_birth'))->format('Y-m-d');
         $employee->email = $request->input('email');
         $employee->phone = $request->input('phone');
         $employee->address = $request->input('address');
@@ -103,17 +113,16 @@ class EmployeeController extends Controller
         ], 200);    
     }
     public function update(Request $request, $id){
-        $this->validate($request, [
-            'full_name' => 'required',
-            'job' => 'required',
-            'hire_date' => 'required',
-            'gender' => 'required',
-            'date_of_birth' => 'required',
-            'email' => 'nullable',
-            'phone' => 'required',
+        $rules = [
+            'full_name' => 'required|string',
+            'job' => 'required|exists:jobs,id',
+            'hire_date' => 'required|date_format:d-m-Y',
+            'gender' => 'required|in:L,P',
+            'date_of_birth' => 'required|date_format:d-m-Y',
+            'phone' => 'required|max:20',
             'address' => 'nullable',
-            'salary' => 'nullable'
-        ]);
+            'salary' => 'nullable|numeric'
+        ];
 
         $employee = Employee::find($id);
         if(!$employee){
@@ -123,11 +132,17 @@ class EmployeeController extends Controller
             ], 404); 
         }
 
+        if($employee->email != $request->input('email')){
+            $rules['email'] = 'nullable|email:dns|unique:employees,email';
+        }
+
+        $this->validate($request, $rules);
+
         $employee->full_name = $request->input('full_name');
         $employee->job_id = $request->input('job');
-        $employee->hire_date = $request->input('hire_date');
+        $employee->hire_date = Carbon::createFromFormat('d-m-Y', $request->input('hire_date'))->format('Y-m-d');
         $employee->gender = $request->input('gender');
-        $employee->date_of_birth = $request->input('date_of_birth');
+        $employee->date_of_birth = Carbon::createFromFormat('d-m-Y', $request->input('date_of_birth'))->format('Y-m-d');
         $employee->email = $request->input('email');
         $employee->phone = $request->input('phone');
         $employee->address = $request->input('address');
