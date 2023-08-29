@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Job;
 use Carbon\Carbon;
+use App\Http\Resources\JobResource;
+use App\Http\Resources\EmployeeResource;
 
 class EmployeeController extends Controller
 {
@@ -20,17 +22,16 @@ class EmployeeController extends Controller
     }
 
     public function index(){
-        $count = Employee::count();
-        if($count == 0){
+        if(Employee::count() == 0){
             return response()->json([
                 'success' => false,
                 'message' => 'Data Employee kosong' 
             ], 404);   
         }else{
-            $employees = Employee::paginate(5);
+            $employees = Employee::with('job')->paginate(5);
             return response()->json([
                 'success' => true,
-                'data' => $employees->items(),
+                'data' => EmployeeResource::collection($employees->items()),
                 'pagination' => [
                     'total' => $employees->total(),
                     'per_page' => $employees->perPage(),
@@ -42,9 +43,8 @@ class EmployeeController extends Controller
             ], 200);
         }
     }
-    public function get_jobs(){
-        $jobs = Job::select('id','job');
-        if($jobs->count() == 0){
+    public function get_jobs(){ 
+        if(Job::count() == 0){
             return response()->json([
                 'success' => false,
                 'message' => 'Data Job kosong' 
@@ -52,7 +52,7 @@ class EmployeeController extends Controller
         }
         return response()->json([
             'success' => true,
-            'data' => $jobs->get() 
+            'data' => JobResource::collection(Job::with('department')->get()) 
         ], 200);
     }
     public function store(Request $request){
@@ -68,8 +68,7 @@ class EmployeeController extends Controller
             'salary' => 'nullable|numeric'
         ]);
 
-        $n_data = Employee::count();
-        if($n_data == 0){
+        if(Employee::count() == 0){
             $request->merge(['employee_id' => 'E001']);
         }else{
             $last_id = Employee::max('employee_id');
@@ -109,7 +108,7 @@ class EmployeeController extends Controller
         }
         return response()->json([
             'success' => true,
-            'data' => $employee
+            'data' => new EmployeeResource($employee)
         ], 200);    
     }
     public function update(Request $request, $id){

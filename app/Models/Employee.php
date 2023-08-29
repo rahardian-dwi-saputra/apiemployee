@@ -26,7 +26,12 @@ class Employee extends Model{
             get: fn (string $value) => Carbon::createFromFormat('Y-m-d', $value)->format('d-m-Y')
         );
     }
-    public function department(): BelongsTo
+    protected function salary(): Attribute{
+        return Attribute::make(
+            get: fn (string $value) => number_format($value,0,'.','.')
+        );
+    }
+    public function job(): BelongsTo
     {
         return $this->belongsTo(Job::class);
     }
