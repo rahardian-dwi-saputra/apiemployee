@@ -15,4 +15,16 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
+
+    /**
+     * Configure global rate limiter
+     *
+     * @return void
+    */
+    public function boot()
+    {
+        app(\Illuminate\Cache\RateLimiter::class)->for('global', function () {
+            return \Illuminate\Cache\RateLimiting\Limit::perMinute(4)->by(request()->ip());
+        });
+    }
 }

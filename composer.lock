@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92349cb28edd03fc664907cf9290705c",
+    "content-hash": "8fdeadd9875e470d265413fac806717a",
     "packages": [
         {
             "name": "brick/math",
@@ -3082,6 +3082,55 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "rogervila/lumen-rate-limiting",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rogervila/lumen-rate-limiting.git",
+                "reference": "a0547d4a5c1a76b4052f93b8715545fc9e1c8f89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rogervila/lumen-rate-limiting/zipball/a0547d4a5c1a76b4052f93b8715545fc9e1c8f89",
+                "reference": "a0547d4a5c1a76b4052f93b8715545fc9e1c8f89",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/lumen-framework": "^8.0|^9.0|^10.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0|^9.0|^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LumenRateLimiting\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roger Vilà",
+                    "email": "rogervila@me.com"
+                }
+            ],
+            "description": " Lumen port of Laravel ThrottleRequests middleware",
+            "keywords": [
+                "Rate",
+                "laravel",
+                "limiter",
+                "lumen"
+            ],
+            "support": {
+                "issues": "https://github.com/rogervila/lumen-rate-limiting/issues",
+                "source": "https://github.com/rogervila/lumen-rate-limiting/tree/1.2.0"
+            },
+            "time": "2023-04-18T15:24:43+00:00"
         },
         {
             "name": "symfony/console",

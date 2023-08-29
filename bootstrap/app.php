@@ -81,7 +81,8 @@ $app->configure('app');
 // ]);
 
 $app->routeMiddleware([
-	'BasicAuth' => 'App\Http\Middleware\BasicAuthMiddleware',
+	'BasicAuth' => App\Http\Middleware\BasicAuthMiddleware::class,
+	'throttle' => \LumenRateLimiting\ThrottleRequests::class,
 ]);
 
 /*
@@ -95,8 +96,8 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AppServiceProvider::class);
+ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
@@ -112,6 +113,7 @@ $app->routeMiddleware([
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
+    'middleware' => 'throttle:global',
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
