@@ -9,18 +9,20 @@ use Carbon\Carbon;
 use App\Http\Resources\JobResource;
 use App\Http\Resources\EmployeeResource;
 
+/**
+ * @group Employee management
+ *
+ * APIs for managing employees
+ */
 class EmployeeController extends Controller
 {
+    
     /**
-     * Create a new controller instance.
+     * Get all employees
      *
-     * @return void
+     * This endpoint lets you get all employee data.
+     * @authenticated
      */
-    public function __construct()
-    {
-        //
-    }
-
     public function index(){
         if(Employee::count() == 0){
             return response()->json([
@@ -43,6 +45,13 @@ class EmployeeController extends Controller
             ], 200);
         }
     }
+
+    /**
+     * Get all jobs
+     *
+     * This endpoint lets you get all job data.
+     * @authenticated
+     */
     public function get_jobs(){ 
         if(Job::count() == 0){
             return response()->json([
@@ -55,6 +64,17 @@ class EmployeeController extends Controller
             'data' => JobResource::collection(Job::with('department')->get()) 
         ], 200);
     }
+
+    /**
+     * Create a employee
+     *
+     * This endpoint lets you create a employee.
+     * @authenticated
+     * @bodyParam full_name string required The full name of the employee. No-example
+     * @bodyParam job string The id of the job. Example: 1
+     * @bodyParam phone string The phone number of the employee. Example: 0821xxxxxxxx
+     * @bodyParam salary number The salary of the employee. Example: 8000000
+     */
     public function store(Request $request){
         $this->validate($request, [
             'full_name' => 'required|string',
@@ -97,6 +117,14 @@ class EmployeeController extends Controller
             'message' => 'Berhasil menyimpan data'
         ], 200);
     }
+
+    /**
+     * Detail a employee
+     *
+     * This endpoint lets you get detail a employee.
+     * @authenticated
+     * @urlParam id required The id of the employee. Example: E001
+     */
     public function show($id){
         $employee = Employee::find($id);
 
@@ -111,6 +139,18 @@ class EmployeeController extends Controller
             'data' => new EmployeeResource($employee)
         ], 200);    
     }
+
+    /**
+     * Update a employee
+     *
+     * This endpoint lets you update a employee.
+     * @authenticated
+     * @urlParam id required The id of the employee. Example: E001
+     * @bodyParam full_name string required The full name of the employee. No-example
+     * @bodyParam job string The id of the job. Example: 1
+     * @bodyParam phone string The phone number of the employee. Example: 0821xxxxxxxx
+     * @bodyParam salary number The salary of the employee. Example: 8000000
+     */
     public function update(Request $request, $id){
         $rules = [
             'full_name' => 'required|string',
@@ -153,6 +193,14 @@ class EmployeeController extends Controller
             'message' => 'Berhasil mengedit data'
         ], 200);
     }
+
+    /**
+     * Delete a employee
+     *
+     * This endpoint lets you delete a employee.
+     * @authenticated
+     * @urlParam id required The id of the employee. Example: E001
+     */
     public function destroy($id){
         $employee = Employee::find($id);
 

@@ -1,0 +1,243 @@
+openapi: 3.0.3
+info:
+  title: Lumen
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /employees:
+    get:
+      summary: 'Get all employees'
+      operationId: getAllEmployees
+      description: 'This endpoint lets you get all employee data.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - 'Employee management'
+    post:
+      summary: 'Create a employee'
+      operationId: createAEmployee
+      description: 'This endpoint lets you create a employee.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Employee management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  description: 'The full name of the employee.'
+                  example: null
+                job:
+                  type: string
+                  description: 'The id of the job.'
+                  example: '1'
+                hire_date:
+                  type: string
+                  description: 'Must be a valid date in the format <code>d-m-Y</code>.'
+                  example: 15-11-2023
+                gender:
+                  type: string
+                  description: ''
+                  example: P
+                  enum:
+                    - L
+                    - P
+                date_of_birth:
+                  type: string
+                  description: 'Must be a valid date in the format <code>d-m-Y</code>.'
+                  example: 15-11-2023
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: otto74@example.com
+                phone:
+                  type: string
+                  description: 'The phone number of the employee.'
+                  example: 0821xxxxxxxx
+                address:
+                  type: string
+                  description: ''
+                  example: null
+                salary:
+                  type: number
+                  description: 'The salary of the employee.'
+                  example: 8000000.0
+              required:
+                - full_name
+                - hire_date
+                - gender
+                - date_of_birth
+  /jobs:
+    get:
+      summary: 'Get all jobs'
+      operationId: getAllJobs
+      description: 'This endpoint lets you get all job data.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - 'Employee management'
+  '/employees/{id}':
+    get:
+      summary: 'Detail a employee'
+      operationId: detailAEmployee
+      description: 'This endpoint lets you get detail a employee.'
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized.
+      tags:
+        - 'Employee management'
+    put:
+      summary: 'Update a employee'
+      operationId: updateAEmployee
+      description: 'This endpoint lets you update a employee.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Employee management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name:
+                  type: string
+                  description: 'The full name of the employee.'
+                  example: null
+                job:
+                  type: string
+                  description: 'The id of the job.'
+                  example: '1'
+                hire_date:
+                  type: string
+                  description: 'Must be a valid date in the format <code>d-m-Y</code>.'
+                  example: 15-11-2023
+                gender:
+                  type: string
+                  description: ''
+                  example: L
+                  enum:
+                    - L
+                    - P
+                date_of_birth:
+                  type: string
+                  description: 'Must be a valid date in the format <code>d-m-Y</code>.'
+                  example: 15-11-2023
+                phone:
+                  type: string
+                  description: 'The phone number of the employee.'
+                  example: 0821xxxxxxxx
+                address:
+                  type: string
+                  description: ''
+                  example: null
+                salary:
+                  type: number
+                  description: 'The salary of the employee.'
+                  example: 8000000.0
+              required:
+                - full_name
+                - hire_date
+                - gender
+                - date_of_birth
+    delete:
+      summary: 'Delete a employee'
+      operationId: deleteAEmployee
+      description: 'This endpoint lets you delete a employee.'
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Employee management'
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The id of the employee.'
+        example: E001
+        required: true
+        schema:
+          type: string
+  /login:
+    post:
+      summary: ''
+      operationId: postLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: ''
+                  example: esse
+                password:
+                  type: string
+                  description: ''
+                  example: omnis
+              required:
+                - username
+                - password
+      security: []
+  /me:
+    post:
+      summary: ''
+      operationId: postMe
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /logout:
+    post:
+      summary: ''
+      operationId: postLogout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: 'Employee management'
+    description: "\nAPIs for managing employees"
+  -
+    name: Endpoints
+    description: ''

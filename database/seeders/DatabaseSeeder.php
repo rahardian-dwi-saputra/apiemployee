@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([
-        // 	DepartmentSeeder::class,
-        //     JobSeeder::class
-        // ]);
-        for($i=0; $i<10; $i++)
-            Employee::factory()->create();
+        $this->call([
+        	//DepartmentSeeder::class,
+            //JobSeeder::class,
+            UserSeeder::class
+        ]);
+        // for($i=0; $i<10; $i++)
+        //     Employee::factory()->create();
     }
 }

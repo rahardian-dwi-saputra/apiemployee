@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         app(\Illuminate\Cache\RateLimiter::class)->for('global', function () {
-            return \Illuminate\Cache\RateLimiting\Limit::perMinute(60)->by(request()->ip());
+            return \Illuminate\Cache\RateLimiting\Limit::perMinute(20)->by(request()->ip());
         });
     }
 }

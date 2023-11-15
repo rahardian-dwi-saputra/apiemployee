@@ -61,6 +61,9 @@ $app->singleton(
 
 $app->configure('app');
 
+$app->configure('jwt');
+$app->configure('auth');
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -80,8 +83,13 @@ $app->configure('app');
 //     'auth' => App\Http\Middleware\Authenticate::class,
 // ]);
 
+/*$app->routeMiddleware([
+    'BasicAuth' => App\Http\Middleware\BasicAuthMiddleware::class,
+    'throttle' => \LumenRateLimiting\ThrottleRequests::class,
+]);*/
+
 $app->routeMiddleware([
-	'BasicAuth' => App\Http\Middleware\BasicAuthMiddleware::class,
+	'auth' => App\Http\Middleware\Authenticate::class,
 	'throttle' => \LumenRateLimiting\ThrottleRequests::class,
 ]);
 
@@ -99,6 +107,7 @@ $app->routeMiddleware([
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -117,5 +126,10 @@ $app->router->group([
 ], function ($router) {
     require __DIR__.'/../routes/web.php';
 });
+
+if (class_exists(\Knuckles\Scribe\ScribeServiceProvider::class)) {
+    $app->register(\Knuckles\Scribe\ScribeServiceProvider::class);
+    $app->configure('scribe');
+}
 
 return $app;
