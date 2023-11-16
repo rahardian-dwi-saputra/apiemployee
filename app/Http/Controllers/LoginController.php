@@ -23,7 +23,7 @@ class LoginController extends Controller
      * @response scenario="Successful Login" {
      * "success": true,
      * "message": "User Login Successfully",
-     * "access_token": "MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb",
+     * "access_token": "token",
      * "token_type": "bearer",
      * "expires_in": 86400
      * }

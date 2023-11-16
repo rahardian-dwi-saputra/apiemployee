@@ -23,7 +23,7 @@ paths:
                 example:
                   success: true
                   message: 'User Login Successfully'
-                  access_token: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
+                  access_token: token
                   token_type: bearer
                   expires_in: 86400
                 properties:
@@ -35,7 +35,7 @@ paths:
                     example: 'User Login Successfully'
                   access_token:
                     type: string
-                    example: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
+                    example: token
                   token_type:
                     type: string
                     example: bearer
@@ -176,7 +176,7 @@ paths:
                 gender:
                   type: string
                   description: ''
-                  example: L
+                  example: P
                   enum:
                     - L
                     - P
@@ -187,7 +187,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: felicity52@example.net
+                  example: amarks@example.net
                 phone:
                   type: string
                   description: 'The phone number of the employee.'

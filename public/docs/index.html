@@ -216,7 +216,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 <code class="language-json" style="max-height: 300px;">{
     &quot;success&quot;: true,
     &quot;message&quot;: &quot;User Login Successfully&quot;,
-    &quot;access_token&quot;: &quot;MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb&quot;,
+    &quot;access_token&quot;: &quot;token&quot;,
     &quot;token_type&quot;: &quot;bearer&quot;,
     &quot;expires_in&quot;: 86400
 }</code>
@@ -960,9 +960,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"full_name\": null,
     \"job\": \"1\",
     \"hire_date\": \"16-11-2023\",
-    \"gender\": \"L\",
+    \"gender\": \"P\",
     \"date_of_birth\": \"16-11-2023\",
-    \"email\": \"felicity52@example.net\",
+    \"email\": \"amarks@example.net\",
     \"phone\": \"0821xxxxxxxx\",
     \"salary\": 8000000
 }"
@@ -984,9 +984,9 @@ let body = {
     "full_name": null,
     "job": "1",
     "hire_date": "16-11-2023",
-    "gender": "L",
+    "gender": "P",
     "date_of_birth": "16-11-2023",
-    "email": "felicity52@example.net",
+    "email": "amarks@example.net",
     "phone": "0821xxxxxxxx",
     "salary": 8000000
 };
@@ -1012,9 +1012,9 @@ $response = $client-&gt;post(
             'full_name' =&gt; null,
             'job' =&gt; '1',
             'hire_date' =&gt; '16-11-2023',
-            'gender' =&gt; 'L',
+            'gender' =&gt; 'P',
             'date_of_birth' =&gt; '16-11-2023',
-            'email' =&gt; 'felicity52@example.net',
+            'email' =&gt; 'amarks@example.net',
             'phone' =&gt; '0821xxxxxxxx',
             'salary' =&gt; 8000000.0,
         ],
@@ -1147,10 +1147,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTemployees"
-               value="L"
+               value="P"
                data-component="body">
     <br>
-<p>Example: <code>L</code></p>
+<p>Example: <code>P</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>L</code></li> <li><code>P</code></li></ul>
         </div>
@@ -1171,10 +1171,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTemployees"
-               value="felicity52@example.net"
+               value="amarks@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>felicity52@example.net</code></p>
+<p>Must be a valid email address. Example: <code>amarks@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;

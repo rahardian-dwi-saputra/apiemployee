@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Lumen",
-        "_postman_id": "64f250fa-0d9e-48af-9425-fec8625aa399",
+        "_postman_id": "f2bde6ef-6c05-485c-8eef-38e65dc15cda",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -52,7 +52,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n\"success\": true,\n\"message\": \"User Login Successfully\",\n\"access_token\": \"MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb\",\n\"token_type\": \"bearer\",\n\"expires_in\": 86400\n}",
+                            "body": "{\n\"success\": true,\n\"message\": \"User Login Successfully\",\n\"access_token\": \"token\",\n\"token_type\": \"bearer\",\n\"expires_in\": 86400\n}",
                             "name": "Successful Login"
                         },
                         {
@@ -262,7 +262,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"L\",\"date_of_birth\":\"16-11-2023\",\"email\":\"felicity52@example.net\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
+                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"P\",\"date_of_birth\":\"16-11-2023\",\"email\":\"amarks@example.net\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
                         },
                         "description": "This endpoint lets you create a new employee."
                     },

@@ -51,7 +51,7 @@ endpoints:
           {
           "success": true,
           "message": "User Login Successfully",
-          "access_token": "MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb",
+          "access_token": "token",
           "token_type": "bearer",
           "expires_in": 86400
           }
@@ -142,7 +142,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Z1f6ecga3EbaP58kdVh4v6D'
+      - 'Bearer 5Zv8ceg6V3EkdDah1fa4b6P'
     controller: null
     method: null
     route: null
