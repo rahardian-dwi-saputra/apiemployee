@@ -63,7 +63,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6bak6ghD4d8P51VeacvE3Zf'
+      - 'Bearer gaEhaZ486b3ec65dkDVv1Pf'
     controller: null
     method: null
     route: null
@@ -109,7 +109,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer hf51kcEa4P6vad8VD3Zbg6e'
+      - 'Bearer hfc4k8665bVEgavPea3d1DZ'
     controller: null
     method: null
     route: null
@@ -166,7 +166,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: P
+        example: L
         type: string
         enumValues:
           - L
@@ -184,7 +184,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: false
-        example: amarks@example.net
+        example: woconnell@example.org
         type: string
         enumValues: []
         custom: []
@@ -216,9 +216,9 @@ endpoints:
       full_name: null
       job: '1'
       hire_date: 16-11-2023
-      gender: P
+      gender: L
       date_of_birth: 16-11-2023
-      email: amarks@example.net
+      email: woconnell@example.org
       phone: 0821xxxxxxxx
       salary: 8000000.0
     fileParameters: []
@@ -227,7 +227,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer h586vDkeVZ3b1a6fPdcg4Ea'
+      - 'Bearer ke6fP4vb8a56D31aZcVhdgE'
     controller: null
     method: null
     route: null
@@ -282,7 +282,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer PaZvgck83Dda6b1Vf4he65E'
+      - 'Bearer E1vPc366gaa8dkZhbfV4D5e'
     controller: null
     method: null
     route: null
@@ -400,7 +400,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4kga1VahP6b5dD3cZ8Ef6ev'
+      - 'Bearer v6baehP835ZcDgkEa6Vd14f'
     controller: null
     method: null
     route: null
@@ -455,7 +455,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gcZ86vahf3e4PEa1kd56bDV'
+      - 'Bearer gE6V1ePdkf34c6Zba5Dvha8'
     controller: null
     method: null
     route: null
