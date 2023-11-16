@@ -176,7 +176,7 @@ paths:
                 gender:
                   type: string
                   description: ''
-                  example: L
+                  example: P
                   enum:
                     - L
                     - P
@@ -187,7 +187,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: woconnell@example.org
+                  example: aleannon@example.net
                 phone:
                   type: string
                   description: 'The phone number of the employee.'
@@ -267,7 +267,7 @@ paths:
                 gender:
                   type: string
                   description: ''
-                  example: P
+                  example: L
                   enum:
                     - L
                     - P

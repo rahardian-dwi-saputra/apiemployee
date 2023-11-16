@@ -63,7 +63,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gaEhaZ486b3ec65dkDVv1Pf'
+      - 'Bearer 1Pa3Eak5fZ6egV46cb8vhDd'
     controller: null
     method: null
     route: null
@@ -109,7 +109,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer hfc4k8665bVEgavPea3d1DZ'
+      - 'Bearer 8Dak16hPef6v5Zg3acEdV4b'
     controller: null
     method: null
     route: null
@@ -166,7 +166,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: L
+        example: P
         type: string
         enumValues:
           - L
@@ -184,7 +184,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: false
-        example: woconnell@example.org
+        example: aleannon@example.net
         type: string
         enumValues: []
         custom: []
@@ -216,9 +216,9 @@ endpoints:
       full_name: null
       job: '1'
       hire_date: 16-11-2023
-      gender: L
+      gender: P
       date_of_birth: 16-11-2023
-      email: woconnell@example.org
+      email: aleannon@example.net
       phone: 0821xxxxxxxx
       salary: 8000000.0
     fileParameters: []
@@ -227,7 +227,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ke6fP4vb8a56D31aZcVhdgE'
+      - 'Bearer ch8PVgfZ56vdE16aDk43aeb'
     controller: null
     method: null
     route: null
@@ -282,7 +282,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer E1vPc366gaa8dkZhbfV4D5e'
+      - 'Bearer vZ4VePka615hEdD8gb3c6af'
     controller: null
     method: null
     route: null
@@ -348,7 +348,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: P
+        example: L
         type: string
         enumValues:
           - L
@@ -390,7 +390,7 @@ endpoints:
       full_name: null
       job: '1'
       hire_date: 16-11-2023
-      gender: P
+      gender: L
       date_of_birth: 16-11-2023
       phone: 0821xxxxxxxx
       salary: 8000000.0
@@ -400,7 +400,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer v6baehP835ZcDgkEa6Vd14f'
+      - 'Bearer 5a3Dv8bZfh146dacPEg6eVk'
     controller: null
     method: null
     route: null
@@ -455,7 +455,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gE6V1ePdkf34c6Zba5Dvha8'
+      - 'Bearer gDc6V3eZvfh5baa1k86EP4d'
     controller: null
     method: null
     route: null

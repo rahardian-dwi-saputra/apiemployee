@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Lumen",
-        "_postman_id": "dd417349-ee3c-4520-bf1c-70ec502dc662",
+        "_postman_id": "13da0112-2fc2-4e7f-8c7b-40e742150619",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -262,7 +262,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"L\",\"date_of_birth\":\"16-11-2023\",\"email\":\"woconnell@example.org\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
+                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"P\",\"date_of_birth\":\"16-11-2023\",\"email\":\"aleannon@example.net\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
                         },
                         "description": "This endpoint lets you create a new employee."
                     },
@@ -355,7 +355,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"P\",\"date_of_birth\":\"16-11-2023\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
+                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"L\",\"date_of_birth\":\"16-11-2023\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
                         },
                         "description": "This endpoint lets you update a employee."
                     },

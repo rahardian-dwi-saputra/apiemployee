@@ -4,4 +4,5 @@ Homestead.json
 Homestead.yaml
 .env
 .phpunit.result.cache
-.scribe/
+.scribe/endpoints.cache/
+.scribe/endpoints/
