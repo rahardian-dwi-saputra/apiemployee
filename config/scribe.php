@@ -211,7 +211,7 @@ return [
         /*
          * Set this to true if any endpoints in your API use authentication.
          */
-        'enabled' => false,
+        'enabled' => true,
 
         /*
          * Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
@@ -247,7 +247,7 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' => 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.',
+        'extra_info' => 'You can retrieve your token by logging in through <b>API endpoints</b>.',
     ],
 
     /*
@@ -270,6 +270,7 @@ INTRO
     'example_languages' => [
         'bash',
         'javascript',
+        'php'
     ],
 
     /*

@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
+/**
+ * @group Auth endpoints
+ */
 class LoginController extends Controller
 {
     
     /**
      * Login
      *
-     * This endpoint is used to login a user to the system.
+     * Handle a login request to the application.
      * 
      * @bodyParam username string required The username you use to log into this system. No-example
      * @bodyParam password string required The password you use to log into this system. No-example
@@ -53,6 +56,16 @@ class LoginController extends Controller
         return response()->json(auth()->user());
     }
 
+    /**
+     * Log out
+     * 
+     * Voluntatirly end access to the application
+     * @authenticated
+     * 
+     * @response {
+     * "message":"Successfully logged out"
+     * }
+     */
     public function logout(){
         auth()->logout();
         return response()->json(['message' => 'Successfully logged out']);

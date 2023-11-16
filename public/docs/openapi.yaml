@@ -7,6 +7,109 @@ servers:
   -
     url: 'http://localhost'
 paths:
+  /login:
+    post:
+      summary: Login
+      operationId: login
+      description: 'Handle a login request to the application.'
+      parameters: []
+      responses:
+        200:
+          description: 'Successful Login'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'User Login Successfully'
+                  access_token: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
+                  token_type: bearer
+                  expires_in: 86400
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'User Login Successfully'
+                  access_token:
+                    type: string
+                    example: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    example: 86400
+        401:
+          description: 'Failed Login'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Invalid login credentials'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Invalid login credentials'
+      tags:
+        - 'Auth endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: 'The username you use to log into this system.'
+                  example: null
+                password:
+                  type: string
+                  description: 'The password you use to log into this system.'
+                  example: null
+              required:
+                - username
+                - password
+      security: []
+  /me:
+    post:
+      summary: ''
+      operationId: postMe
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Auth endpoints'
+      security: []
+  /logout:
+    post:
+      summary: 'Log out'
+      operationId: logOut
+      description: 'Voluntatirly end access to the application'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Successfully logged out'
+                properties:
+                  message:
+                    type: string
+                    example: 'Successfully logged out'
+      tags:
+        - 'Auth endpoints'
   /employees:
     get:
       summary: 'Get All Employees'
@@ -46,7 +149,7 @@ paths:
     post:
       summary: 'Create a employee'
       operationId: createAEmployee
-      description: 'This endpoint lets you create a employee.'
+      description: 'This endpoint lets you create a new employee.'
       parameters: []
       responses: {  }
       tags:
@@ -84,7 +187,7 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: dameon72@example.org
+                  example: felicity52@example.net
                 phone:
                   type: string
                   description: 'The phone number of the employee.'
@@ -164,7 +267,7 @@ paths:
                 gender:
                   type: string
                   description: ''
-                  example: L
+                  example: P
                   enum:
                     - L
                     - P
@@ -213,102 +316,19 @@ paths:
         required: true
         schema:
           type: string
-  /login:
-    post:
-      summary: Login
-      operationId: login
-      description: 'This endpoint is used to login a user to the system.'
-      parameters: []
-      responses:
-        200:
-          description: 'Successful Login'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: true
-                  message: 'User Login Successfully'
-                  access_token: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
-                  token_type: bearer
-                  expires_in: 86400
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: 'User Login Successfully'
-                  access_token:
-                    type: string
-                    example: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
-                  token_type:
-                    type: string
-                    example: bearer
-                  expires_in:
-                    type: integer
-                    example: 86400
-        401:
-          description: 'Failed Login'
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: 'Invalid login credentials'
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: 'Invalid login credentials'
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  description: 'The username you use to log into this system.'
-                  example: null
-                password:
-                  type: string
-                  description: 'The password you use to log into this system.'
-                  example: null
-              required:
-                - username
-                - password
-      security: []
-  /me:
-    post:
-      summary: ''
-      operationId: postMe
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  /logout:
-    post:
-      summary: ''
-      operationId: postLogout
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
 tags:
+  -
+    name: 'Auth endpoints'
+    description: ''
   -
     name: 'Employee Management'
     description: "\nAPI to manage the employee resource."
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
   -
-    name: Endpoints
-    description: ''
+    default: []

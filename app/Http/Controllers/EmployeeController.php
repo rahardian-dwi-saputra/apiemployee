@@ -8,6 +8,7 @@ use App\Models\Job;
 use Carbon\Carbon;
 use App\Http\Resources\JobResource;
 use App\Http\Resources\EmployeeResource;
+use Illuminate\Support\Facades\Gate;
 
 /**
  * @group Employee Management
@@ -211,6 +212,14 @@ class EmployeeController extends Controller
      * }
      */
     public function destroy($id){
+
+        if (Gate::denies('isAdmin')){
+            return response()->json([
+                'success' => false,
+                'message' => 'You must be an administrator'
+            ], 403); 
+        }
+
         $employee = Employee::find($id);
 
         if(!$employee){
