@@ -10,23 +10,36 @@
     ],
     "info": {
         "name": "Lumen",
-        "_postman_id": "9fdf691b-5507-4fcc-812d-b32b7ed5bf5a",
+        "_postman_id": "e95de717-c522-4345-b736-255ade59db34",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "Employee management",
-            "description": "\nAPIs for managing employees",
+            "name": "Employee Management",
+            "description": "\nAPI to manage the employee resource.",
             "item": [
                 {
-                    "name": "Get all employees",
+                    "name": "Get All Employees",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "employees",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/employees"
+                            "query": [
+                                {
+                                    "key": "page_size",
+                                    "value": "10",
+                                    "description": "Size per page. Defaults to 5.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "",
+                                    "description": "Page to view.",
+                                    "disabled": true
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/employees?page_size=10&page="
                         },
                         "method": "GET",
                         "header": [
@@ -40,7 +53,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "This endpoint lets you get all employee data."
+                        "description": "This endpoint is used to fetch all employees available in the database."
                     },
                     "response": [
                         {
@@ -69,7 +82,7 @@
                     ]
                 },
                 {
-                    "name": "Get all jobs",
+                    "name": "Get All Jobs",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -89,7 +102,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "This endpoint lets you get all job data."
+                        "description": "This endpoint is used to fetch all jobs available in the database."
                     },
                     "response": [
                         {
@@ -139,14 +152,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"15-11-2023\",\"gender\":\"P\",\"date_of_birth\":\"15-11-2023\",\"email\":\"otto74@example.com\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
+                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"L\",\"date_of_birth\":\"16-11-2023\",\"email\":\"dameon72@example.org\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
                         },
                         "description": "This endpoint lets you create a employee."
                     },
                     "response": []
                 },
                 {
-                    "name": "Detail a employee",
+                    "name": "Get a Single Employee",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -158,7 +171,7 @@
                                     "id": "id",
                                     "key": "id",
                                     "value": "E001",
-                                    "description": "The id of the employee."
+                                    "description": "The ID of the employee."
                                 }
                             ]
                         },
@@ -174,7 +187,7 @@
                             }
                         ],
                         "body": null,
-                        "description": "This endpoint lets you get detail a employee."
+                        "description": "This endpoint is used to return a single employees from the database."
                     },
                     "response": [
                         {
@@ -232,7 +245,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"15-11-2023\",\"gender\":\"L\",\"date_of_birth\":\"15-11-2023\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
+                            "raw": "{\"full_name\":null,\"job\":\"1\",\"hire_date\":\"16-11-2023\",\"gender\":\"L\",\"date_of_birth\":\"16-11-2023\",\"phone\":\"0821xxxxxxxx\",\"salary\":8000000}"
                         },
                         "description": "This endpoint lets you update a employee."
                     },
@@ -269,7 +282,14 @@
                         "body": null,
                         "description": "This endpoint lets you delete a employee."
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n \"success\": true,\n \"message\": \"Data berhasil dihapus\",\n}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -278,7 +298,7 @@
             "description": "",
             "item": [
                 {
-                    "name": "POST login",
+                    "name": "Login",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -299,14 +319,27 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"esse\",\"password\":\"omnis\"}"
+                            "raw": "{\"username\":null,\"password\":null}"
                         },
-                        "description": "",
+                        "description": "This endpoint is used to login a user to the system.",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"success\": true,\n\"message\": \"User Login Successfully\",\n\"access_token\": \"MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb\",\n\"token_type\": \"bearer\",\n\"expires_in\": 86400\n}",
+                            "name": "Successful Login"
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n\"success\": false,\n\"message\": \"Invalid login credentials\"\n}",
+                            "name": "Failed Login"
+                        }
+                    ]
                 },
                 {
                     "name": "POST me",

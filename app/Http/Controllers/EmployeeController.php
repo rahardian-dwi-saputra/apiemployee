@@ -10,27 +10,29 @@ use App\Http\Resources\JobResource;
 use App\Http\Resources\EmployeeResource;
 
 /**
- * @group Employee management
+ * @group Employee Management
  *
- * APIs for managing employees
+ * API to manage the employee resource.
  */
 class EmployeeController extends Controller
 {
     
     /**
-     * Get all employees
+     * Get All Employees
      *
-     * This endpoint lets you get all employee data.
+     * This endpoint is used to fetch all employees available in the database.
      * @authenticated
+     * @queryParam page_size int Size per page. Defaults to 5. Example: 10
+     * @queryParam page int Page to view. No-example
      */
-    public function index(){
+    public function index(Request $request){
         if(Employee::count() == 0){
             return response()->json([
                 'success' => false,
                 'message' => 'Data Employee kosong' 
             ], 404);   
         }else{
-            $employees = Employee::with('job')->paginate(5);
+            $employees = Employee::with('job')->paginate($request->page_size ?? 5);
             return response()->json([
                 'success' => true,
                 'data' => EmployeeResource::collection($employees->items()),
@@ -47,9 +49,9 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Get all jobs
+     * Get All Jobs
      *
-     * This endpoint lets you get all job data.
+     * This endpoint is used to fetch all jobs available in the database.
      * @authenticated
      */
     public function get_jobs(){ 
@@ -68,7 +70,7 @@ class EmployeeController extends Controller
     /**
      * Create a employee
      *
-     * This endpoint lets you create a employee.
+     * This endpoint lets you create a new employee.
      * @authenticated
      * @bodyParam full_name string required The full name of the employee. No-example
      * @bodyParam job string The id of the job. Example: 1
@@ -114,16 +116,17 @@ class EmployeeController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Berhasil menyimpan data'
+            'message' => 'Berhasil menyimpan data',
+            'data' => new EmployeeResource($employee)
         ], 200);
     }
 
     /**
-     * Detail a employee
+     * Get a Single Employee
      *
-     * This endpoint lets you get detail a employee.
+     * This endpoint is used to return a single employees from the database.
      * @authenticated
-     * @urlParam id required The id of the employee. Example: E001
+     * @urlParam id string required The ID of the employee. Example: E001
      */
     public function show($id){
         $employee = Employee::find($id);
@@ -190,7 +193,8 @@ class EmployeeController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Berhasil mengedit data'
+            'message' => 'Berhasil mengedit data',
+            'data' => new EmployeeResource($employee)
         ], 200);
     }
 
@@ -200,6 +204,11 @@ class EmployeeController extends Controller
      * This endpoint lets you delete a employee.
      * @authenticated
      * @urlParam id required The id of the employee. Example: E001
+     * 
+     * @response {
+     *  "success": true,
+     *  "message": "Data berhasil dihapus",
+     * }
      */
     public function destroy($id){
         $employee = Employee::find($id);

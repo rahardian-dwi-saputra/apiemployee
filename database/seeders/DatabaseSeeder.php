@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-        	//DepartmentSeeder::class,
-            //JobSeeder::class,
+        	DepartmentSeeder::class,
+            JobSeeder::class,
             UserSeeder::class
         ]);
-        // for($i=0; $i<10; $i++)
-        //     Employee::factory()->create();
+        for($i=0; $i<30; $i++)
+             Employee::factory()->create();
     }
 }

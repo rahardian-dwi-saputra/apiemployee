@@ -1,21 +1,21 @@
-name: 'Employee management'
+name: 'Employee Management'
 description: |-
 
-  APIs for managing employees
+  API to manage the employee resource.
 endpoints:
   -
     httpMethods:
       - GET
     uri: employees
     metadata:
-      groupName: 'Employee management'
+      groupName: 'Employee Management'
       groupDescription: |-
 
-        APIs for managing employees
+        API to manage the employee resource.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get all employees'
-      description: 'This endpoint lets you get all employee data.'
+      title: 'Get All Employees'
+      description: 'This endpoint is used to fetch all employees available in the database.'
       authenticated: true
       custom: []
     headers:
@@ -23,8 +23,25 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      page_size:
+        name: page_size
+        description: 'Size per page. Defaults to 5.'
+        required: false
+        example: 10
+        type: integer
+        enumValues: []
+        custom: []
+      page:
+        name: page
+        description: 'Page to view.'
+        required: false
+        example: null
+        type: integer
+        enumValues: []
+        custom: []
+    cleanQueryParameters:
+      page_size: 10
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -50,14 +67,14 @@ endpoints:
       - GET
     uri: jobs
     metadata:
-      groupName: 'Employee management'
+      groupName: 'Employee Management'
       groupDescription: |-
 
-        APIs for managing employees
+        API to manage the employee resource.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Get all jobs'
-      description: 'This endpoint lets you get all job data.'
+      title: 'Get All Jobs'
+      description: 'This endpoint is used to fetch all jobs available in the database.'
       authenticated: true
       custom: []
     headers:
@@ -92,10 +109,10 @@ endpoints:
       - POST
     uri: employees
     metadata:
-      groupName: 'Employee management'
+      groupName: 'Employee Management'
       groupDescription: |-
 
-        APIs for managing employees
+        API to manage the employee resource.
       subgroup: ''
       subgroupDescription: ''
       title: 'Create a employee'
@@ -130,7 +147,7 @@ endpoints:
         name: hire_date
         description: 'Must be a valid date in the format <code>d-m-Y</code>.'
         required: true
-        example: 15-11-2023
+        example: 16-11-2023
         type: string
         enumValues: []
         custom: []
@@ -138,7 +155,7 @@ endpoints:
         name: gender
         description: ''
         required: true
-        example: P
+        example: L
         type: string
         enumValues:
           - L
@@ -148,7 +165,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date in the format <code>d-m-Y</code>.'
         required: true
-        example: 15-11-2023
+        example: 16-11-2023
         type: string
         enumValues: []
         custom: []
@@ -156,7 +173,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: false
-        example: otto74@example.com
+        example: dameon72@example.org
         type: string
         enumValues: []
         custom: []
@@ -187,10 +204,10 @@ endpoints:
     cleanBodyParameters:
       full_name: null
       job: '1'
-      hire_date: 15-11-2023
-      gender: P
-      date_of_birth: 15-11-2023
-      email: otto74@example.com
+      hire_date: 16-11-2023
+      gender: L
+      date_of_birth: 16-11-2023
+      email: dameon72@example.org
       phone: 0821xxxxxxxx
       salary: 8000000.0
     fileParameters: []
@@ -206,14 +223,14 @@ endpoints:
       - GET
     uri: 'employees/{id}'
     metadata:
-      groupName: 'Employee management'
+      groupName: 'Employee Management'
       groupDescription: |-
 
-        APIs for managing employees
+        API to manage the employee resource.
       subgroup: ''
       subgroupDescription: ''
-      title: 'Detail a employee'
-      description: 'This endpoint lets you get detail a employee.'
+      title: 'Get a Single Employee'
+      description: 'This endpoint is used to return a single employees from the database.'
       authenticated: true
       custom: []
     headers:
@@ -222,7 +239,7 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The id of the employee.'
+        description: 'The ID of the employee.'
         required: true
         example: E001
         type: string
@@ -257,10 +274,10 @@ endpoints:
       - PUT
     uri: 'employees/{id}'
     metadata:
-      groupName: 'Employee management'
+      groupName: 'Employee Management'
       groupDescription: |-
 
-        APIs for managing employees
+        API to manage the employee resource.
       subgroup: ''
       subgroupDescription: ''
       title: 'Update a employee'
@@ -304,7 +321,7 @@ endpoints:
         name: hire_date
         description: 'Must be a valid date in the format <code>d-m-Y</code>.'
         required: true
-        example: 15-11-2023
+        example: 16-11-2023
         type: string
         enumValues: []
         custom: []
@@ -322,7 +339,7 @@ endpoints:
         name: date_of_birth
         description: 'Must be a valid date in the format <code>d-m-Y</code>.'
         required: true
-        example: 15-11-2023
+        example: 16-11-2023
         type: string
         enumValues: []
         custom: []
@@ -353,9 +370,9 @@ endpoints:
     cleanBodyParameters:
       full_name: null
       job: '1'
-      hire_date: 15-11-2023
+      hire_date: 16-11-2023
       gender: L
-      date_of_birth: 15-11-2023
+      date_of_birth: 16-11-2023
       phone: 0821xxxxxxxx
       salary: 8000000.0
     fileParameters: []
@@ -371,10 +388,10 @@ endpoints:
       - DELETE
     uri: 'employees/{id}'
     metadata:
-      groupName: 'Employee management'
+      groupName: 'Employee Management'
       groupDescription: |-
 
-        APIs for managing employees
+        API to manage the employee resource.
       subgroup: ''
       subgroupDescription: ''
       title: 'Delete a employee'
@@ -400,7 +417,17 @@ endpoints:
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "message": "Data berhasil dihapus",
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null

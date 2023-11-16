@@ -10,8 +10,8 @@ endpoints:
       groupDescription: ''
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
+      title: Login
+      description: 'This endpoint is used to login a user to the system.'
       authenticated: false
       custom: []
     headers:
@@ -24,25 +24,48 @@ endpoints:
     bodyParameters:
       username:
         name: username
-        description: ''
+        description: 'The username you use to log into this system.'
         required: true
-        example: esse
+        example: null
         type: string
         enumValues: []
         custom: []
       password:
         name: password
-        description: ''
+        description: 'The password you use to log into this system.'
         required: true
-        example: omnis
+        example: null
         type: string
         enumValues: []
         custom: []
     cleanBodyParameters:
-      username: esse
-      password: omnis
+      username: null
+      password: null
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "message": "User Login Successfully",
+          "access_token": "MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb",
+          "token_type": "bearer",
+          "expires_in": 86400
+          }
+        headers: []
+        description: 'Successful Login'
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+          "success": false,
+          "message": "Invalid login credentials"
+          }
+        headers: []
+        description: 'Failed Login'
+        custom: []
     responseFields: []
     auth: []
     controller: null

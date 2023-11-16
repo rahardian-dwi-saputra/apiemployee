@@ -9,10 +9,30 @@ servers:
 paths:
   /employees:
     get:
-      summary: 'Get all employees'
+      summary: 'Get All Employees'
       operationId: getAllEmployees
-      description: 'This endpoint lets you get all employee data.'
-      parameters: []
+      description: 'This endpoint is used to fetch all employees available in the database.'
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Size per page. Defaults to 5.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'Size per page. Defaults to 5.'
+            example: 10
+        -
+          in: query
+          name: page
+          description: 'Page to view.'
+          example: null
+          required: false
+          schema:
+            type: integer
+            description: 'Page to view.'
+            example: null
       responses:
         401:
           description: ''
@@ -22,7 +42,7 @@ paths:
                 type: string
                 example: Unauthorized.
       tags:
-        - 'Employee management'
+        - 'Employee Management'
     post:
       summary: 'Create a employee'
       operationId: createAEmployee
@@ -30,7 +50,7 @@ paths:
       parameters: []
       responses: {  }
       tags:
-        - 'Employee management'
+        - 'Employee Management'
       requestBody:
         required: true
         content:
@@ -49,22 +69,22 @@ paths:
                 hire_date:
                   type: string
                   description: 'Must be a valid date in the format <code>d-m-Y</code>.'
-                  example: 15-11-2023
+                  example: 16-11-2023
                 gender:
                   type: string
                   description: ''
-                  example: P
+                  example: L
                   enum:
                     - L
                     - P
                 date_of_birth:
                   type: string
                   description: 'Must be a valid date in the format <code>d-m-Y</code>.'
-                  example: 15-11-2023
+                  example: 16-11-2023
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: otto74@example.com
+                  example: dameon72@example.org
                 phone:
                   type: string
                   description: 'The phone number of the employee.'
@@ -84,9 +104,9 @@ paths:
                 - date_of_birth
   /jobs:
     get:
-      summary: 'Get all jobs'
+      summary: 'Get All Jobs'
       operationId: getAllJobs
-      description: 'This endpoint lets you get all job data.'
+      description: 'This endpoint is used to fetch all jobs available in the database.'
       parameters: []
       responses:
         401:
@@ -97,12 +117,12 @@ paths:
                 type: string
                 example: Unauthorized.
       tags:
-        - 'Employee management'
+        - 'Employee Management'
   '/employees/{id}':
     get:
-      summary: 'Detail a employee'
-      operationId: detailAEmployee
-      description: 'This endpoint lets you get detail a employee.'
+      summary: 'Get a Single Employee'
+      operationId: getASingleEmployee
+      description: 'This endpoint is used to return a single employees from the database.'
       parameters: []
       responses:
         401:
@@ -113,7 +133,7 @@ paths:
                 type: string
                 example: Unauthorized.
       tags:
-        - 'Employee management'
+        - 'Employee Management'
     put:
       summary: 'Update a employee'
       operationId: updateAEmployee
@@ -121,7 +141,7 @@ paths:
       parameters: []
       responses: {  }
       tags:
-        - 'Employee management'
+        - 'Employee Management'
       requestBody:
         required: true
         content:
@@ -140,7 +160,7 @@ paths:
                 hire_date:
                   type: string
                   description: 'Must be a valid date in the format <code>d-m-Y</code>.'
-                  example: 15-11-2023
+                  example: 16-11-2023
                 gender:
                   type: string
                   description: ''
@@ -151,7 +171,7 @@ paths:
                 date_of_birth:
                   type: string
                   description: 'Must be a valid date in the format <code>d-m-Y</code>.'
-                  example: 15-11-2023
+                  example: 16-11-2023
                 phone:
                   type: string
                   description: 'The phone number of the employee.'
@@ -174,25 +194,76 @@ paths:
       operationId: deleteAEmployee
       description: 'This endpoint lets you delete a employee.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n \"success\": true,\n \"message\": \"Data berhasil dihapus\",\n}"
       tags:
-        - 'Employee management'
+        - 'Employee Management'
     parameters:
       -
         in: path
         name: id
-        description: 'The id of the employee.'
+        description: 'The ID of the employee.'
         example: E001
         required: true
         schema:
           type: string
   /login:
     post:
-      summary: ''
-      operationId: postLogin
-      description: ''
+      summary: Login
+      operationId: login
+      description: 'This endpoint is used to login a user to the system.'
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: 'Successful Login'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'User Login Successfully'
+                  access_token: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
+                  token_type: bearer
+                  expires_in: 86400
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'User Login Successfully'
+                  access_token:
+                    type: string
+                    example: MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb
+                  token_type:
+                    type: string
+                    example: bearer
+                  expires_in:
+                    type: integer
+                    example: 86400
+        401:
+          description: 'Failed Login'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: 'Invalid login credentials'
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: 'Invalid login credentials'
       tags:
         - Endpoints
       requestBody:
@@ -204,12 +275,12 @@ paths:
               properties:
                 username:
                   type: string
-                  description: ''
-                  example: esse
+                  description: 'The username you use to log into this system.'
+                  example: null
                 password:
                   type: string
-                  description: ''
-                  example: omnis
+                  description: 'The password you use to log into this system.'
+                  example: null
               required:
                 - username
                 - password
@@ -236,8 +307,8 @@ paths:
       security: []
 tags:
   -
-    name: 'Employee management'
-    description: "\nAPIs for managing employees"
+    name: 'Employee Management'
+    description: "\nAPI to manage the employee resource."
   -
     name: Endpoints
     description: ''

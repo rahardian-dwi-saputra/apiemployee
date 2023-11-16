@@ -68,20 +68,20 @@
                             </ul>
                     <ul id="tocify-header-employee-management" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="employee-management">
-                    <a href="#employee-management">Employee management</a>
+                    <a href="#employee-management">Employee Management</a>
                 </li>
                                     <ul id="tocify-subheader-employee-management" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="employee-management-GETemployees">
-                                <a href="#employee-management-GETemployees">Get all employees</a>
+                                <a href="#employee-management-GETemployees">Get All Employees</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="employee-management-GETjobs">
-                                <a href="#employee-management-GETjobs">Get all jobs</a>
+                                <a href="#employee-management-GETjobs">Get All Jobs</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="employee-management-POSTemployees">
                                 <a href="#employee-management-POSTemployees">Create a employee</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="employee-management-GETemployees--id-">
-                                <a href="#employee-management-GETemployees--id-">Detail a employee</a>
+                                <a href="#employee-management-GETemployees--id-">Get a Single Employee</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="employee-management-PUTemployees--id-">
                                 <a href="#employee-management-PUTemployees--id-">Update a employee</a>
@@ -97,7 +97,7 @@
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="endpoints-POSTlogin">
-                                <a href="#endpoints-POSTlogin">POST login</a>
+                                <a href="#endpoints-POSTlogin">Login</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTme">
                                 <a href="#endpoints-POSTme">POST me</a>
@@ -116,7 +116,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 15, 2023</li>
+        <li>Last updated: November 16, 2023</li>
     </ul>
 </div>
 
@@ -134,17 +134,17 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="employee-management">Employee management</h1>
+        <h1 id="employee-management">Employee Management</h1>
 
-    <p>APIs for managing employees</p>
+    <p>API to manage the employee resource.</p>
 
-                                <h2 id="employee-management-GETemployees">Get all employees</h2>
+                                <h2 id="employee-management-GETemployees">Get All Employees</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>This endpoint lets you get all employee data.</p>
+<p>This endpoint is used to fetch all employees available in the database.</p>
 
 <span id="example-requests-GETemployees">
 <blockquote>Example request:</blockquote>
@@ -152,7 +152,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/employees" \
+    --get "http://localhost/employees?page_size=10" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -161,6 +161,12 @@ You can switch the language used with the tabs at the top right (or from the nav
     <pre><code class="language-javascript">const url = new URL(
     "http://localhost/employees"
 );
+
+const params = {
+    "page_size": "10",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -260,15 +266,38 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page_size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page_size"                data-endpoint="GETemployees"
+               value="10"
+               data-component="query">
+    <br>
+<p>Size per page. Defaults to 5. Example: <code>10</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page"                data-endpoint="GETemployees"
+               value=""
+               data-component="query">
+    <br>
+<p>Page to view.</p>
+            </div>
+                </form>
 
-                    <h2 id="employee-management-GETjobs">Get all jobs</h2>
+                    <h2 id="employee-management-GETjobs">Get All Jobs</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>This endpoint lets you get all job data.</p>
+<p>This endpoint is used to fetch all jobs available in the database.</p>
 
 <span id="example-requests-GETjobs">
 <blockquote>Example request:</blockquote>
@@ -406,10 +435,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"full_name\": null,
     \"job\": \"1\",
-    \"hire_date\": \"15-11-2023\",
-    \"gender\": \"P\",
-    \"date_of_birth\": \"15-11-2023\",
-    \"email\": \"otto74@example.com\",
+    \"hire_date\": \"16-11-2023\",
+    \"gender\": \"L\",
+    \"date_of_birth\": \"16-11-2023\",
+    \"email\": \"dameon72@example.org\",
     \"phone\": \"0821xxxxxxxx\",
     \"salary\": 8000000
 }"
@@ -429,10 +458,10 @@ const headers = {
 let body = {
     "full_name": null,
     "job": "1",
-    "hire_date": "15-11-2023",
-    "gender": "P",
-    "date_of_birth": "15-11-2023",
-    "email": "otto74@example.com",
+    "hire_date": "16-11-2023",
+    "gender": "L",
+    "date_of_birth": "16-11-2023",
+    "email": "dameon72@example.org",
     "phone": "0821xxxxxxxx",
     "salary": 8000000
 };
@@ -545,10 +574,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="hire_date"                data-endpoint="POSTemployees"
-               value="15-11-2023"
+               value="16-11-2023"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>15-11-2023</code></p>
+<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>16-11-2023</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -556,10 +585,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="gender"                data-endpoint="POSTemployees"
-               value="P"
+               value="L"
                data-component="body">
     <br>
-<p>Example: <code>P</code></p>
+<p>Example: <code>L</code></p>
 Must be one of:
 <ul style="list-style-type: square;"><li><code>L</code></li> <li><code>P</code></li></ul>
         </div>
@@ -569,10 +598,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="POSTemployees"
-               value="15-11-2023"
+               value="16-11-2023"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>15-11-2023</code></p>
+<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>16-11-2023</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -580,10 +609,10 @@ Must be one of:
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTemployees"
-               value="otto74@example.com"
+               value="dameon72@example.org"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>otto74@example.com</code></p>
+<p>Must be a valid email address. Example: <code>dameon72@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -620,13 +649,13 @@ Must be one of:
         </div>
         </form>
 
-                    <h2 id="employee-management-GETemployees--id-">Detail a employee</h2>
+                    <h2 id="employee-management-GETemployees--id-">Get a Single Employee</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>This endpoint lets you get detail a employee.</p>
+<p>This endpoint is used to return a single employees from the database.</p>
 
 <span id="example-requests-GETemployees--id-">
 <blockquote>Example request:</blockquote>
@@ -752,7 +781,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value="E001"
                data-component="url">
     <br>
-<p>The id of the employee. Example: <code>E001</code></p>
+<p>The ID of the employee. Example: <code>E001</code></p>
             </div>
                     </form>
 
@@ -776,9 +805,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"full_name\": null,
     \"job\": \"1\",
-    \"hire_date\": \"15-11-2023\",
+    \"hire_date\": \"16-11-2023\",
     \"gender\": \"L\",
-    \"date_of_birth\": \"15-11-2023\",
+    \"date_of_birth\": \"16-11-2023\",
     \"phone\": \"0821xxxxxxxx\",
     \"salary\": 8000000
 }"
@@ -798,9 +827,9 @@ const headers = {
 let body = {
     "full_name": null,
     "job": "1",
-    "hire_date": "15-11-2023",
+    "hire_date": "16-11-2023",
     "gender": "L",
-    "date_of_birth": "15-11-2023",
+    "date_of_birth": "16-11-2023",
     "phone": "0821xxxxxxxx",
     "salary": 8000000
 };
@@ -925,10 +954,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="hire_date"                data-endpoint="PUTemployees--id-"
-               value="15-11-2023"
+               value="16-11-2023"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>15-11-2023</code></p>
+<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>16-11-2023</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>gender</code></b>&nbsp;&nbsp;
@@ -949,10 +978,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="date_of_birth"                data-endpoint="PUTemployees--id-"
-               value="15-11-2023"
+               value="16-11-2023"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>15-11-2023</code></p>
+<p>Must be a valid date in the format <code>d-m-Y</code>. Example: <code>16-11-2023</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone</code></b>&nbsp;&nbsp;
@@ -1026,7 +1055,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-DELETEemployees--id-">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+ &quot;success&quot;: true,
+ &quot;message&quot;: &quot;Data berhasil dihapus&quot;,
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-DELETEemployees--id-" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-DELETEemployees--id-"></span>:
@@ -1114,12 +1153,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
     
 
-                                <h2 id="endpoints-POSTlogin">POST login</h2>
+                                <h2 id="endpoints-POSTlogin">Login</h2>
 
 <p>
 </p>
 
-
+<p>This endpoint is used to login a user to the system.</p>
 
 <span id="example-requests-POSTlogin">
 <blockquote>Example request:</blockquote>
@@ -1131,8 +1170,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"esse\",
-    \"password\": \"omnis\"
+    \"username\": null,
+    \"password\": null
 }"
 </code></pre></div>
 
@@ -1148,8 +1187,8 @@ const headers = {
 };
 
 let body = {
-    "username": "esse",
-    "password": "omnis"
+    "username": null,
+    "password": null
 };
 
 fetch(url, {
@@ -1161,7 +1200,30 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTlogin">
-</span>
+            <blockquote>
+            <p>Example response (200, Successful Login):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;User Login Successfully&quot;,
+    &quot;access_token&quot;: &quot;MgowQLkdpShwrb8AI9j1YAGmwnDjAOeE17XrP5nb&quot;,
+    &quot;token_type&quot;: &quot;bearer&quot;,
+    &quot;expires_in&quot;: 86400
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401, Failed Login):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Invalid login credentials&quot;
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTlogin" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTlogin"></span>:
@@ -1238,10 +1300,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="username"                data-endpoint="POSTlogin"
-               value="esse"
+               value=""
                data-component="body">
     <br>
-<p>Example: <code>esse</code></p>
+<p>The username you use to log into this system.</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1249,10 +1311,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTlogin"
-               value="omnis"
+               value=""
                data-component="body">
     <br>
-<p>Example: <code>omnis</code></p>
+<p>The password you use to log into this system.</p>
         </div>
         </form>
 
