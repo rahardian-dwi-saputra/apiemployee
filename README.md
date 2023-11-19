@@ -32,7 +32,17 @@ php artisan migrate
 php artisan db:seed
 ```
 
+- Generate dokumentasi API
+```sh
+php artisan scribe:generate
+```
+
 - Jalankan project dengan valet laravel
 ```sh
 valet start
+```
+
+- Lihat dokumentasi API
+```sh
+http://apiemployee.test/docs/index.html
 ```
