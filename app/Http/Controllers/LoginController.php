@@ -52,8 +52,29 @@ class LoginController extends Controller
         return $this->respondWithToken($token);
     }
 
-    public function me(){
-        return response()->json(auth()->user());
+    /**
+     * User Profile
+     * 
+     * This endpoint is used to get user profile
+     * @authenticated
+     */
+    public function profile(){
+        return response()->json([
+            'name' => auth()->user()->name,
+            'username' => auth()->user()->username,
+            'email' => auth()->user()->email,
+            'admin' => auth()->user()->is_admin == 1 ? true : false,
+        ]);
+    }
+
+    /**
+     * Regenerate Auth
+     * 
+     * This endpoint is used to regenerate auth
+     * @authenticated
+     */
+    public function refresh(){
+        return $this->respondWithToken(auth()->refresh());
     }
 
     /**
@@ -69,10 +90,6 @@ class LoginController extends Controller
     public function logout(){
         auth()->logout();
         return response()->json(['message' => 'Successfully logged out']);
-    }
-
-    public function refresh(){
-        return $this->respondWithToken(auth()->refresh());
     }
 
     protected function respondWithToken($token){

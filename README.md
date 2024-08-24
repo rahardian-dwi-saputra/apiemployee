@@ -24,6 +24,11 @@ composer install
 cp .env.example .env
 ```
 
+- Generete JWT secret
+```sh
+php artisan jwt:secret
+```
+
 - Buat database kosong menggunakan tool database yang anda sukai. Pada file `.env` isikan opsi `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD` sesuai dengan kredensial database yang sudah anda buat
 
 - Lakukan migrasi database

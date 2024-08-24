@@ -80,15 +80,15 @@ class EmployeeController extends Controller
      */
     public function store(Request $request){
         $this->validate($request, [
-            'full_name' => 'required|string',
+            'full_name' => 'required|string|max:255',
             'job' => 'required|exists:jobs,id',
             'hire_date' => 'required|date_format:d-m-Y',
             'gender' => 'required|in:L,P',
             'date_of_birth' => 'required|date_format:d-m-Y',
-            'email' => 'nullable|email:dns|unique:employees,email',
+            'email' => 'nullable|email:dns|unique:employees,email|max:255',
             'phone' => 'required|max:20',
             'address' => 'nullable',
-            'salary' => 'nullable|numeric'
+            'salary' => 'nullable|numeric|max:20'
         ]);
 
         if(Employee::count() == 0){
@@ -157,14 +157,14 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id){
         $rules = [
-            'full_name' => 'required|string',
+            'full_name' => 'required|string|max:255',
             'job' => 'required|exists:jobs,id',
             'hire_date' => 'required|date_format:d-m-Y',
             'gender' => 'required|in:L,P',
             'date_of_birth' => 'required|date_format:d-m-Y',
             'phone' => 'required|max:20',
             'address' => 'nullable',
-            'salary' => 'nullable|numeric'
+            'salary' => 'nullable|numeric|max:20'
         ];
 
         $employee = Employee::find($id);
@@ -176,7 +176,7 @@ class EmployeeController extends Controller
         }
 
         if($employee->email != $request->input('email')){
-            $rules['email'] = 'nullable|email:dns|unique:employees,email';
+            $rules['email'] = 'nullable|email:dns|unique:employees,email|max:255';
         }
 
         $this->validate($request, $rules);
